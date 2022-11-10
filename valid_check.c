@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   valid_check.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: seungjki <seungjki@student.42seoul.kr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/10 14:30:40 by seungjki          #+#    #+#             */
+/*   Updated: 2022/11/10 14:30:42 by seungjki         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "solong.h"
 
 int	check_start_end(char *map)
@@ -21,7 +33,7 @@ int	check_wall(char **map, int idx)
 		if (idx == 0)
 		{
 			if (indexof4(map[0], '1') != -1)
-			return (0);
+				return (0);
 		}
 		else if (idx != 0 && map[idx] != NULL)
 		{
@@ -73,7 +85,7 @@ int	check_content(char **map)
 		comp.exit = comp.exit + indexof1(map, 'E', idx);
 		comp.collect = comp.collect + indexof1(map, 'C', idx);
 	}
-	if (comp.player != 1 || comp.exit == 0 || comp.collect == 0)
+	if (comp.player != 1 || comp.exit != 1 || comp.collect == 0)
 		return (0);
 	return (1);
 }
@@ -97,7 +109,7 @@ char	**is_map_valid(char **map)
 		while (map[idx][++idx1]) 
 			if (indexof2("1CEP0\n", map[idx][idx1]) != 1)
 				return (0);
-		idx1 = 0;
+		idx1 = -1;
 	}
 	return (map);
 }

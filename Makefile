@@ -1,8 +1,8 @@
-NAME = solong
+NAME = so_long
 
 SRC_A = main.c gnl.c libft.c str_parse.c \
 		valid_check.c indexof.c initialize.c map_img_maker.c \
-		itoa.c key_hook.c \
+		itoa.c key_hook.c is_path_valid.c \
 
 OBJ_A = $(SRC_A:.c=.o)
 
@@ -14,13 +14,13 @@ CFLAGS = -Wall -Wextra -Werror
 all : $(NAME)
 
 $(NAME) : $(OBJ_A) $(LIBMLX)
-	$(CC) $(CFLAG) $(LIBMLX) -framework OpenGL -framework Appkit $^ -o $@
+	$(CC) $(CFLAGS) $(LIBMLX) -g -framework OpenGL -framework Appkit $^ -o $@
 
 $(LIBMLX) :
 		cd mlx; make
 
 %.o : %.c
-	$(CC) $(CFLAG) -c $<
+	$(CC) $(CFLAGS) -c $<
 
 clean :
 	rm -f $(OBJ_A)

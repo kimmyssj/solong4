@@ -6,7 +6,7 @@
 /*   By: seungjki <seungjki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 20:06:27 by seungjki          #+#    #+#             */
-/*   Updated: 2022/10/28 20:06:30 by seungjki         ###   ########.fr       */
+/*   Updated: 2022/11/10 14:26:55 by seungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void    *initialize_image(void **mlx, t_img *img) //// <- 정상작동함
     return (mlx);
 }
 
-int initialize_everything(void **mlx, void **win, t_img *img, char *name_of_ber)
+int initialize_everything(void **mlx, t_img *img, char *name_of_ber)
 {
     *mlx = mlx_init();
     if (*mlx == 0)

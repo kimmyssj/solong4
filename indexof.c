@@ -6,7 +6,7 @@
 /*   By: seungjki <seungjki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 12:22:50 by seungjki          #+#    #+#             */
-/*   Updated: 2022/10/31 12:22:53 by seungjki         ###   ########.fr       */
+/*   Updated: 2022/11/07 11:23:13 by seungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int indexof2(char *str, char c)
     return (check);
 }
 
-int indexof3(char *str, char c, char d)
+int indexof3(char *str, char c)
 {
     int index;
 

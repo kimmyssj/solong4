@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: seungjki <seungjki@student.42seoul.kr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/10 13:09:06 by seungjki          #+#    #+#             */
+/*   Updated: 2022/11/10 13:35:14 by seungjki         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "solong.h"
 
 int ft_strcmp(char *s1, char *s2)
@@ -39,4 +51,45 @@ int	ft_strlen(char *str)
 	while (str[len])
 		++len;
 	return (len);
+}
+
+char    *ft_strdup(char *s1)
+{
+    int     idx;
+    char    *result;
+
+    idx = 0;
+    while (s1[idx])
+        idx ++;
+    result = (char *)malloc(sizeof(char) * idx + 1);
+    if (result == NULL)
+        return (NULL);
+    while (idx != -1)
+    {
+        result[idx] = s1[idx];
+        idx --;
+    }
+    return (result);
+}
+
+char	**pointer(char **a)
+{
+	int		idx;
+	char	**answer;
+
+	idx = 0;
+	while (a[idx])
+		idx ++;
+	answer = malloc(sizeof(char *) * idx + 1);
+	if (answer == 0)
+		return (0);
+	answer[idx] = 0;
+	idx = -1;
+	while (a[++idx])
+	{
+		answer[idx] = ft_strdup(a[idx]);
+		if (answer[idx] == 0)
+			free_all(&answer);
+	}
+	return (answer);
 }

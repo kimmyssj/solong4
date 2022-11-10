@@ -6,7 +6,7 @@
 /*   By: seungjki <seungjki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 06:09:13 by seungjki          #+#    #+#             */
-/*   Updated: 2022/10/31 14:28:46 by seungjki         ###   ########.fr       */
+/*   Updated: 2022/11/08 15:39:27 by seungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,31 @@ typedef struct	s_hook
 	char	*temp;
 }	t_hook;
 
+typedef struct	s_axis
+{
+	int	x_p;
+	int	y_p;
+	int	x_e;
+	int	y_e;
+	int	cc;
+}	t_axis;
+
+typedef struct	s_caxis
+{
+	int	x_c;
+	int	y_c;
+}	t_caxis;
+
+typedef struct	s_plague
+{
+	int	x;
+	int	y;
+	int	flag;
+}	t_plague;
+
 int		ft_strlen(char *str);
 int		ber_hwak_in(char *name_of_deb);
-int		initialize_everything(void **mlx, void **win, t_img *img, char *name_of_ber);
+int		initialize_everything(void **mlx, t_img *img, char *name_of_ber);
 int		map_making(t_mlx *mlx, t_img img);
 int		indexof(char *str, char c);
 int		indexof1(char **str, char c, int idx);
@@ -99,8 +121,11 @@ int		left_is_pressed(t_mlx *mlx, t_img img);
 int		down_is_pressed(t_mlx *mlx, t_img img);
 int		right_is_pressed(t_mlx *mlx, t_img img);
 int		up_is_pressed(t_mlx *mlx, t_img img);
+int		map_path_valid(char **map);
 void    free_all(char ***str);
 void    image_put_in(t_mlx *mlx, char **map, t_img img);
+char    *ft_strdup(char *s1);
+char    **pointer(char **a);
 char	*get_next_line(int fd);
 char    *ft_itoa(int n);
 char	**make_it_double_array(char *argv);

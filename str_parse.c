@@ -6,7 +6,7 @@
 /*   By: seungjki <seungjki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 20:06:39 by seungjki          #+#    #+#             */
-/*   Updated: 2022/10/31 12:26:43 by seungjki         ###   ########.fr       */
+/*   Updated: 2022/11/10 13:15:51 by seungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,26 +64,27 @@ int	gae_haeng_hwak_in(char *argv, int *fd)
 	return (str_num.gae_haeng_gaet_su);
 }
 
-char	**gnl_loop(char **answer, int gae_haeng_gaet_su, int fd)
+char	**gnl_loop(char ***answer, int gae_haeng_gaet_su, int fd)
 {
 	int	idx;
 
 	idx = 0;
 	while (idx < gae_haeng_gaet_su)
 	{
-		answer[idx] = get_next_line(fd);
-		if (answer[idx] == 0)
+		answer[0][idx] = get_next_line(fd);
+		if (answer[0][idx] == 0)
 		{
 			while (idx > 0)
 			{
-				free(answer[idx - 1]);
+				free(answer[0][idx - 1]);
 				idx --;
 			}
+			free(answer[0]);
 			return (0);
 		}
 		idx ++;
 	}
-	return (answer);
+	return (*answer);
 }
 
 char	**make_it_double_array(char *argv)
@@ -100,9 +101,9 @@ char	**make_it_double_array(char *argv)
 	if (answer == 0)
 		return (NULL);
 	answer[gae_haeng_gaet_su] = NULL;
-	if (gnl_loop(answer, gae_haeng_gaet_su, fd) == NULL)
+	if (gnl_loop(&answer, gae_haeng_gaet_su, fd) == NULL)
 	{
-		free(answer);
+		free_all(&answer);
 		return (NULL);
 	}
 	return (answer);
