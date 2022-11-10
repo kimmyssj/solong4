@@ -6,7 +6,7 @@
 /*   By: seungjki <seungjki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 14:30:40 by seungjki          #+#    #+#             */
-/*   Updated: 2022/11/10 14:30:42 by seungjki         ###   ########.fr       */
+/*   Updated: 2022/11/10 15:13:33 by seungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	check_wall(char **map, int idx)
 		idx ++;
 	}
 	if (indexof4(map[idx - 1], '1') != -1)
-			return (0);
+		return (0);
 	return (1);
 }
 
@@ -106,7 +106,7 @@ char	**is_map_valid(char **map)
 	idx1 = -1;
 	while (map[++idx])
 	{
-		while (map[idx][++idx1]) 
+		while (map[idx][++idx1])
 			if (indexof2("1CEP0\n", map[idx][idx1]) != 1)
 				return (0);
 		idx1 = -1;

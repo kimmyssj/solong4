@@ -6,18 +6,17 @@
 /*   By: seungjki <seungjki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 06:09:13 by seungjki          #+#    #+#             */
-/*   Updated: 2022/11/08 15:39:27 by seungjki         ###   ########.fr       */
+/*   Updated: 2022/11/10 15:53:56 by seungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SOLONG_H
+# define SOLONG_H
 # define BUFFER_SIZE 500
 
 # include <stdlib.h>
-# include <stdio.h>
+# include <mlx.h>
 # include <fcntl.h>
-# include "./mlx/mlx.h"
 # include <unistd.h>
 
 typedef struct s_gnl
@@ -29,7 +28,7 @@ typedef struct s_gnl
 	char	*ret;
 }	t_gnl;
 
-typedef struct	s_img
+typedef struct s_img
 {
 	void	*exit;
 	void	*wall;
@@ -38,7 +37,7 @@ typedef struct	s_img
 	void	*edible;
 }	t_img;
 
-typedef struct	s_mlx
+typedef struct s_mlx
 {
 	void	*mlx;
 	void	*win;
@@ -50,26 +49,26 @@ typedef struct	s_mlx
 	char	**map;
 }	t_mlx;
 
-typedef struct	s_both
+typedef struct s_both
 {
 	t_img	img;
 	t_mlx	*mlx;
 }	t_both;
 
-typedef struct	s_str_num
+typedef struct s_str_num
 {
 	int		gae_haeng_gaet_su;
 	char	*relative_path;
 }	t_str_num;
 
-typedef struct	s_component
+typedef struct s_component
 {
 	int	player;
 	int	exit;
 	int	collect;
 }	t_comp;
 
-typedef struct	s_image_idx
+typedef struct s_image_idx
 {
 	int	x;
 	int	y;
@@ -77,14 +76,14 @@ typedef struct	s_image_idx
 	int	idx1;
 }	t_image_idx;
 
-typedef struct	s_hook
+typedef struct s_hook
 {
 	int		idx;
 	int		idx1;
 	char	*temp;
 }	t_hook;
 
-typedef struct	s_axis
+typedef struct s_axis
 {
 	int	x_p;
 	int	y_p;
@@ -93,13 +92,13 @@ typedef struct	s_axis
 	int	cc;
 }	t_axis;
 
-typedef struct	s_caxis
+typedef struct s_caxis
 {
 	int	x_c;
 	int	y_c;
 }	t_caxis;
 
-typedef struct	s_plague
+typedef struct s_plague
 {
 	int	x;
 	int	y;
@@ -122,13 +121,14 @@ int		down_is_pressed(t_mlx *mlx, t_img img);
 int		right_is_pressed(t_mlx *mlx, t_img img);
 int		up_is_pressed(t_mlx *mlx, t_img img);
 int		map_path_valid(char **map);
-void    free_all(char ***str);
-void    image_put_in(t_mlx *mlx, char **map, t_img img);
-char    *ft_strdup(char *s1);
-char    **pointer(char **a);
+void	plague_active(char **map, int idx);
+void	free_all(char ***str);
+void	image_put_in(t_mlx *mlx, char **map, t_img img);
+char	*ft_strdup(char *s1);
+char	**pointer(char **a);
 char	*get_next_line(int fd);
-char    *ft_itoa(int n);
+char	*ft_itoa(int n);
 char	**make_it_double_array(char *argv);
-char    **is_map_valid(char **map);
+char	**is_map_valid(char **map);
 
 #endif

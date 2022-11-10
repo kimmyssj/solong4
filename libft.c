@@ -6,22 +6,22 @@
 /*   By: seungjki <seungjki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 13:09:06 by seungjki          #+#    #+#             */
-/*   Updated: 2022/11/10 13:35:14 by seungjki         ###   ########.fr       */
+/*   Updated: 2022/11/10 15:26:30 by seungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solong.h"
 
-int ft_strcmp(char *s1, char *s2)
+int	ft_strcmp(char *s1, char *s2)
 {
 	int	idx;
 
 	idx = 0;
 	while (s1[idx] && s1[idx] == s2[idx])
-		idx ++; 
+		idx ++;
 	if (s1[idx] == '\0' && s2[idx] == '\0')
-        return (0);
-    return ((unsigned char)s1[idx] - (unsigned char)s2[idx]);
+		return (0);
+	return ((unsigned char)s1[idx] - (unsigned char)s2[idx]);
 }
 
 int	ft_strcpy(char *dst, char *src)
@@ -45,7 +45,7 @@ int	ft_strcpy(char *dst, char *src)
 
 int	ft_strlen(char *str)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	while (str[len])
@@ -53,23 +53,23 @@ int	ft_strlen(char *str)
 	return (len);
 }
 
-char    *ft_strdup(char *s1)
+char	*ft_strdup(char *s1)
 {
-    int     idx;
-    char    *result;
+	int		idx;
+	char	*result;
 
-    idx = 0;
-    while (s1[idx])
-        idx ++;
-    result = (char *)malloc(sizeof(char) * idx + 1);
-    if (result == NULL)
-        return (NULL);
-    while (idx != -1)
-    {
-        result[idx] = s1[idx];
-        idx --;
-    }
-    return (result);
+	idx = 0;
+	while (s1[idx])
+		idx ++;
+	result = (char *)malloc(sizeof(char) * idx + 1);
+	if (result == NULL)
+		return (NULL);
+	while (idx != -1)
+	{
+		result[idx] = s1[idx];
+		idx --;
+	}
+	return (result);
 }
 
 char	**pointer(char **a)

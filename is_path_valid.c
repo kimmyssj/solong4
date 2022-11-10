@@ -6,57 +6,11 @@
 /*   By: seungjki <seungjki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 17:38:30 by seungjki          #+#    #+#             */
-/*   Updated: 2022/11/10 12:55:09 by seungjki         ###   ########.fr       */
+/*   Updated: 2022/11/10 15:55:03 by seungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solong.h"
-
-void	plague_initialize(char **map, int x, int y)
-{
-	if (map[y + 1][x] == '0' || map[y + 1][x] == 'C')
-		map[y + 1][x] = '2';
-	if (map[y - 1][x] == '0' || map[y - 1][x] == 'C')
-		map[y - 1][x] = '2';
-	if (map[y][x + 1] == '0' || map[y][x + 1] == 'C')
-		map[y][x + 1] = '2';
-	if (map[y][x - 1] == '0' || map[y][x - 1] == 'C')
-		map[y][x - 1] = '2';
-}
-
-void	plague_component(char **map, t_plague *p)
-{
-	if ((map[p->y + 1][p->x] == '2' && map[p->y][p->x] == '0') ||
-		(map[p->y - 1][p->x] == '2' && map[p->y][p->x] == '0') ||
-		(map[p->y][p->x + 1] == '2' && map[p->y][p->x] == '0') ||
-		(map[p->y][p->x - 1] == '2' && map[p->y][p->x] == '0') ||
-		(map[p->y + 1][p->x] == '2' && map[p->y][p->x] == 'C') ||
-		(map[p->y - 1][p->x] == '2' && map[p->y][p->x] == 'C') ||
-		(map[p->y][p->x + 1] == '2' && map[p->y][p->x] == 'C') ||
-		(map[p->y][p->x - 1] == '2' && map[p->y][p->x] == 'C'))
-		{
-			p->flag = 0;
-			map[p->y][p->x] = '2';
-		}
-}
-
-void	plague_active(char **map, int idx)
-{
-	t_plague	p;
-
-	p.flag = 0;
-	while (p.flag == 0)
-	{
-		p.y = 0;
-		p.flag = 1;
-		while (++p.y < idx - 1)
-		{
-			p.x = 0;
-			while (map[p.y][++p.x] != '\n')
-				plague_component(map, &p);
-		}
-	}
-}
 
 void	check_location(t_axis *axis, char **map)
 {
@@ -99,9 +53,9 @@ int	is_he_weak(char **map, t_axis a, t_caxis *caxis)
 		answer = 1;
 	while (idx < a.cc)
 	{
-		if (!((map[caxis[idx].y_c + 1][caxis[idx].x_c] == '2') ||
-			(map[caxis[idx].y_c - 1][caxis[idx].x_c] == '2') ||
-			(map[caxis[idx].y_c][caxis[idx].x_c + 1] == '2') || 
+		if (!((map[caxis[idx].y_c + 1][caxis[idx].x_c] == '2')
+			|| (map[caxis[idx].y_c - 1][caxis[idx].x_c] == '2') ||
+			(map[caxis[idx].y_c][caxis[idx].x_c + 1] == '2') ||
 			(map[caxis[idx].y_c][caxis[idx].x_c - 1] == '2')))
 			return (0);
 		idx ++;
@@ -154,7 +108,7 @@ int	map_path_valid(char **map)
 	check_location(&axis, mmap);
 	caxis = c_location(caxis, map, axis.cc);
 	plague_initialize(mmap, axis.x_p, axis.y_p);
-	plague_active(mmap, idx); // this one over here
+	plague_active(mmap, idx);
 	if (is_he_weak(mmap, axis, caxis) == 0)
 	{
 		free(caxis);
